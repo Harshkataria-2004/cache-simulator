@@ -1,0 +1,13 @@
+workload,policy,l1_hit_rate,l2_hit_rate,l3_hit_rate,amat
+matrix,lru,74.78,99.85,0.00,7.11
+matrix,fifo,74.37,99.86,0.00,7.16
+matrix,lfu,69.87,99.88,0.00,7.70
+matrix,random,78.86,99.83,0.00,6.62
+bfs,lru,94.80,0.00,0.00,16.90
+bfs,fifo,94.80,0.00,0.00,16.90
+bfs,lfu,94.80,0.00,0.00,16.90
+bfs,random,94.80,0.00,0.00,16.90
+sort,lru,99.98,0.00,0.00,4.04
+sort,fifo,99.98,0.00,0.00,4.04
+sort,lfu,99.98,0.00,0.00,4.04
+sort,random,99.98,0.00,0.00,4.04
