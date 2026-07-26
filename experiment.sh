@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "workload,policy,l1_hit_rate,l2_hit_rate,l3_hit_rate,amat" > results.csv
 
-for workload in matrix bfs sort; do
+for workload in matrix bfs sort pointer bfs_large; do
     for policy in lru fifo lfu random; do
         output=$(./cache_sim traces/${workload}_trace.txt $policy)
         
