@@ -56,7 +56,8 @@ static void run_simulation(const std::string &label,
 
 int main(int argc, char *argv[])
 {
-    srand(42);
+    uint32_t seed = (argc >= 4) ? std::stoul(argv[3]) : 42;
+    srand(seed);
     std::cout << "╔══════════════════════════════════════════╗\n";
     std::cout << "║    Cache Hierarchy Simulator  v0.1       ║\n";
     std::cout << "╚══════════════════════════════════════════╝\n\n";
