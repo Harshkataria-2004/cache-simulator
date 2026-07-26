@@ -1,0 +1,12 @@
+build/
+*.o
+*.out
+cache_sim
+branch_sim
+traces/matrix_trace.txt
+traces/bfs_trace.txt
+traces/sort_trace.txt
+traces/branch_matrix.txt
+traces/branch_bfs.txt
+traces/branch_sort.txt
+

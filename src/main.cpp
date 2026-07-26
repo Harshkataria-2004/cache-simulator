@@ -65,6 +65,7 @@ static void run_simulation(const std::string& label,
 // ── main ──────────────────────────────────────────────────────────────────────
 
 int main(int argc, char* argv[]) {
+    srand(42);
     std::cout << "╔══════════════════════════════════════════╗\n";
     std::cout << "║    Cache Hierarchy Simulator  v0.1       ║\n";
     std::cout << "╚══════════════════════════════════════════╝\n\n";
