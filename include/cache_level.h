@@ -33,6 +33,7 @@ public:
     bool access(uint64_t address, bool is_write);
 
     const CacheStats& stats() const { return stats_; }
+    uint32_t hit_latency() const { return hit_latency_; }
     void              print_config() const;
     void              print_stats()  const;
     void              reset_stats();

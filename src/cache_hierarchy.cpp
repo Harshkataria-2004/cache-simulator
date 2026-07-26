@@ -31,7 +31,7 @@ double CacheHierarchy::amat(uint32_t dram_latency_cycles) const {
         double mr = s.miss_rate();
         // We store hit latency inside CacheLevel but don't expose it as a
         // getter yet – use sensible defaults: L1=4, L2=12, L3=36 cycles
-        uint32_t hl = (i == 0) ? 4 : (i == 1) ? 12 : 36;
+        uint32_t hl = levels_[i]->hit_latency();
         result = hl + mr * result;
     }
     return result;
