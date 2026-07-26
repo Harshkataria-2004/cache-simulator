@@ -29,7 +29,7 @@ def bubble_sort(N=1024):
                 lines.append(f"W 0x{arr_base + (j+1)*4:x}")
     return lines
 
-def bfs(num_nodes=512, edges_per_node=8):
+def bfs(num_nodes=10000, edges_per_node=16):
     lines = []
     adj_base   = BASE
     queue_base = BASE + num_nodes * edges_per_node * 4
@@ -47,6 +47,39 @@ def bfs(num_nodes=512, edges_per_node=8):
                 lines.append(f"W 0x{queue_base + len(visited_set)*4:x}")
     return lines
 
+def pointer_chase(num_nodes=131072, passes=3):
+    lines = []
+    nodes = list(range(num_nodes))
+    random.shuffle(nodes)
+    node_base = BASE
+    for _ in range(passes):
+        current = 0
+        for _ in range(num_nodes):
+            lines.append(f"R 0x{node_base + current * 8 + 4:x}")
+            current = nodes[current]
+    return lines
+
+def bfs_large(num_nodes=10000, edges_per_node=8):
+    lines = []
+    adj_base   = BASE
+    queue_base = BASE + num_nodes * edges_per_node * 4
+    visited    = BASE + queue_base + num_nodes * 4
+    adj = {i: random.sample(range(num_nodes), edges_per_node)
+           for i in range(num_nodes)}
+    queue = [0]
+    visited_set = {0}
+    while queue:
+        node = queue.pop(0)
+        for idx, neighbor in enumerate(adj[node]):
+            lines.append(f"R 0x{adj_base + (node*edges_per_node+idx)*4:x}")
+            lines.append(f"R 0x{visited + neighbor*4:x}")
+            if neighbor not in visited_set:
+                visited_set.add(neighbor)
+                lines.append(f"W 0x{visited + neighbor*4:x}")
+                lines.append(f"W 0x{queue_base + len(queue)*4:x}")
+                queue.append(neighbor)
+    return lines
+
 workload = sys.argv[1] if len(sys.argv) > 1 else "matrix"
 
 if workload == "matrix":
@@ -55,6 +88,10 @@ elif workload == "sort":
     lines = bubble_sort(256)
 elif workload == "bfs":
     lines = bfs()
+elif workload == "pointer":
+    lines = pointer_chase()
+elif workload == "bfs_large":
+    lines = bfs_large()
 else:
     print(f"Unknown workload: {workload}", file=sys.stderr)
     sys.exit(1)
