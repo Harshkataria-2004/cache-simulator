@@ -30,7 +30,7 @@ static std::unique_ptr<CacheHierarchy> build_default_hierarchy(ReplacementPolicy
     h->add_level(std::make_unique<CacheLevel>(
         "L1", 32 * 1024, 8, 64, pol, WritePolicy::WRITE_BACK, 4));
 
-    // L2: 256 KB, 8-way, 64B blocks
+    // L2: 64 KB, 8-way, 64B blocks
     h->add_level(std::make_unique<CacheLevel>(
         "L2", 64 * 1024, 8, 64, pol, WritePolicy::WRITE_BACK, 12));
 
